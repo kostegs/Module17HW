@@ -10,17 +10,15 @@ public class Patrol : IBehaviour
     public Patrol(IEnumerable<Transform> patrolPoints, IMovableAndRotateable movable)
     {
         _movable = movable;
-
-        foreach(Transform point  in patrolPoints)        
-            _patrolPoints.Enqueue(point);
-
+        _patrolPoints = new Queue<Transform>(patrolPoints);
+        
         SetNextPatrolPoint();        
     }        
     
     public void Update()
     {
-        Vector3 direction = VectorsAssistive.GetDirectionTo(_movable.Transform.position, _currentPoint.position);        
-        direction = direction * _movable.MoveSpeed * Time.deltaTime;
+        Vector3 direction = VectorsAssistive.GetDirectionTo(_movable.Transform.position, _currentPoint.position).normalized;
+        
         _movable.Move(direction);
         _movable.Rotate(direction);
 

@@ -21,8 +21,6 @@ public class CharacterMoveWASD : IBehaviour
         if (horizontalSpeed == 0 && verticalSpeed == 0)
             return;
 
-        Debug.Log($"horizontal: {_userInput.HorizontalInput}, vertical: {_userInput.VerticalInput}");
-
         Vector3 input = new Vector3(horizontalSpeed, 0, verticalSpeed);
         Vector3 direction = input.normalized;
 

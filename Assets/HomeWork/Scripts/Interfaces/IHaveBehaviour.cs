@@ -1,4 +1,5 @@
-public interface IHaveBehaviour
+public interface IHaveBehaviour : IMovableAndRotateable, IDestroyable
 {
-    void SetBehaviour(IBehaviour behaviour);    
-}
+    void SetBehaviour(IBehaviour behaviour);
+}   
+

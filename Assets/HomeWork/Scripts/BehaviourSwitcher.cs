@@ -1,31 +1,30 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BehaviourSwitcher : MonoBehaviour
 {
-    [SerializeField] CalmBehaviours _calmBehaviour;
-    [SerializeField] CharacterInteractionBehaviours _characterInteractionBehaviour;    
-    [SerializeField] List<Transform> _patrolPoints;
-
+    private CalmBehaviours _calmBehaviour;
+    private CharacterInteractionBehaviours _characterInteractionBehaviour;
+    private List<Transform> _patrolPoints;
     private Enemy _enemy;    
 
-    public void Initialize()
+    public void Initialize(Enemy enemy, IEnumerable<Transform> patrolPoints, CalmBehaviours calmBehaviour, CharacterInteractionBehaviours characterInteractionBehaviour)
     {
+        _enemy = enemy;
+        _patrolPoints = patrolPoints.ToList<Transform>();
+        _calmBehaviour = calmBehaviour;
+        _characterInteractionBehaviour = characterInteractionBehaviour;
 
-    }
-
-    private void Awake()
-    {
-        _enemy = GetComponent<Enemy>();
-        SwitchCalmBehaviour();
-    }
+        SwitchToCalmBehaviour();
+    }    
 
     private void OnTriggerEnter(Collider other)
     {
         Character character = other.GetComponent<Character>();
 
         if (character != null)
-            SwitchCharacterInteractionBehaviour(character);
+            SwitchToCharacterInteractionBehaviour(character);
     }
 
     private void OnTriggerExit(Collider other)
@@ -33,10 +32,10 @@ public class BehaviourSwitcher : MonoBehaviour
         Character character = other.GetComponent<Character>();
 
         if (character != null)
-            SwitchCalmBehaviour();
+            SwitchToCalmBehaviour();
     }
 
-    private void SwitchCalmBehaviour()
+    private void SwitchToCalmBehaviour()
     {
         Debug.Log("Switch to calm behaviour");
 
@@ -61,7 +60,7 @@ public class BehaviourSwitcher : MonoBehaviour
         _enemy.SetBehaviour(behaviour);
     }
 
-    private void SwitchCharacterInteractionBehaviour(Character character)
+    private void SwitchToCharacterInteractionBehaviour(Character character)
     {
         Debug.Log("Switch to interact behaviour");
 

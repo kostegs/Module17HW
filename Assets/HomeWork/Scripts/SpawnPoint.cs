@@ -6,7 +6,7 @@ public class SpawnPoint : MonoBehaviour
     [SerializeField] private CalmBehaviours _calmBehaviour;
     [SerializeField] private CharacterInteractionBehaviours _characterInteractionBehaviour;
     [SerializeField] private PatrolPoints _patrolPoints;
-    [SerializeField] private Enemy _enemyPrefab;
+    [SerializeField] private Enemy _enemyPrefab;    
 
     private void Awake()
     {

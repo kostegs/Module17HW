@@ -4,9 +4,9 @@ public class PermanentDeath : IBehaviour
 
     public PermanentDeath(IDestroyable enemy)
         => _enemy = enemy;        
-    
+
     public void Update()
     {
-        _enemy.DestroyObject();   
+        _enemy.DestroyObject();
     }
 }

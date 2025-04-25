@@ -9,12 +9,13 @@ public class BehaviourSwitcher : MonoBehaviour
     private List<Transform> _patrolPoints;
     private Enemy _enemy;    
 
-    public void Initialize(Enemy enemy, IEnumerable<Transform> patrolPoints, CalmBehaviours calmBehaviour, CharacterInteractionBehaviours characterInteractionBehaviour)
+    public void Initialize(Enemy enemy, IEnumerable<Transform> patrolPoints, 
+                                CalmBehaviours calmBehaviour, CharacterInteractionBehaviours characterInteractionBehaviour)
     {
         _enemy = enemy;
         _patrolPoints = patrolPoints.ToList<Transform>();
         _calmBehaviour = calmBehaviour;
-        _characterInteractionBehaviour = characterInteractionBehaviour;
+        _characterInteractionBehaviour = characterInteractionBehaviour;        
 
         SwitchToCalmBehaviour();
     }    
@@ -37,8 +38,6 @@ public class BehaviourSwitcher : MonoBehaviour
 
     private void SwitchToCalmBehaviour()
     {
-        Debug.Log("Switch to calm behaviour");
-
         IBehaviour behaviour = new Stay();
 
         switch (_calmBehaviour)
@@ -62,8 +61,6 @@ public class BehaviourSwitcher : MonoBehaviour
 
     private void SwitchToCharacterInteractionBehaviour(Character character)
     {
-        Debug.Log("Switch to interact behaviour");
-
         IBehaviour behaviour = new Stay();
 
         switch (_characterInteractionBehaviour)

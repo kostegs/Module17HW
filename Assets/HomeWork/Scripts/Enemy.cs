@@ -11,7 +11,9 @@ public class Enemy : MonoBehaviour, IMovableAndRotateable, IDestroyable, IHaveBe
 
     public Transform Transform => transform;
 
-    public float RotateSpeed => _rotateSpeed;    
+    public float RotateSpeed => _rotateSpeed;
+
+    public ParticleSystem DestroyEffectPrefab => _destroyEffectPrefab;
 
     private Mover _mover;
     private Rotator _rotator;

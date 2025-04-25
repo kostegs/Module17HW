@@ -7,11 +7,11 @@ public class BehaviourSwitcher : MonoBehaviour
     [SerializeField] CharacterInteractionBehaviours _characterInteractionBehaviour;    
     [SerializeField] List<Transform> _patrolPoints;
 
-    private IHaveBehaviour _enemy;
+    private Enemy _enemy;
 
     private void Awake()
     {
-        _enemy = GetComponent<IHaveBehaviour>();
+        _enemy = GetComponent<Enemy>();
         SwitchCalmBehaviour();
     }        
 

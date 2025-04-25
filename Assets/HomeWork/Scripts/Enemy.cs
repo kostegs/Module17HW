@@ -5,15 +5,13 @@ public class Enemy : MonoBehaviour, IMovableAndRotateable, IDestroyable, IHaveBe
 {
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rotateSpeed;
-    [SerializeField] private ParticleSystem _destroyEffect;
+    [SerializeField] private ParticleSystem _destroyEffectPrefab;
     
     public float MoveSpeed => _moveSpeed;
 
     public Transform Transform => transform;
 
-    public float RotateSpeed => _rotateSpeed;
-
-    public ParticleSystem DestroyEffect => _destroyEffect;
+    public float RotateSpeed => _rotateSpeed;    
 
     private Mover _mover;
     private Rotator _rotator;
@@ -43,4 +41,11 @@ public class Enemy : MonoBehaviour, IMovableAndRotateable, IDestroyable, IHaveBe
 
     public void SetBehaviour(IBehaviour behaviour)
         => _currentBehaviour = behaviour;
+
+    public void DestroyObject()
+    {
+        ParticleSystem destroyEffect = Instantiate(_destroyEffectPrefab, transform.position, Quaternion.identity);
+        destroyEffect.Play();
+        Destroy(this.gameObject);
+    }
 }

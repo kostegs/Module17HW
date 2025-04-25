@@ -7,16 +7,39 @@ public class BehaviourSwitcher : MonoBehaviour
     [SerializeField] CharacterInteractionBehaviours _characterInteractionBehaviour;    
     [SerializeField] List<Transform> _patrolPoints;
 
-    private Enemy _enemy;
+    private Enemy _enemy;    
+
+    public void Initialize()
+    {
+
+    }
 
     private void Awake()
     {
         _enemy = GetComponent<Enemy>();
         SwitchCalmBehaviour();
-    }        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Character character = other.GetComponent<Character>();
+
+        if (character != null)
+            SwitchCharacterInteractionBehaviour(character);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Character character = other.GetComponent<Character>();
+
+        if (character != null)
+            SwitchCalmBehaviour();
+    }
 
     private void SwitchCalmBehaviour()
     {
+        Debug.Log("Switch to calm behaviour");
+
         IBehaviour behaviour = new Stay();
 
         switch (_calmBehaviour)
@@ -38,12 +61,28 @@ public class BehaviourSwitcher : MonoBehaviour
         _enemy.SetBehaviour(behaviour);
     }
 
-    private void SwitchCharacterInteractionBehaviour()
+    private void SwitchCharacterInteractionBehaviour(Character character)
     {
-        IBehaviour behaviour;
+        Debug.Log("Switch to interact behaviour");
 
+        IBehaviour behaviour = new Stay();
 
+        switch (_characterInteractionBehaviour)
+        {
+            case CharacterInteractionBehaviours.MoveToCharacter:
+                behaviour = new MoveToCharacter(character, _enemy);
+                break;
+            case CharacterInteractionBehaviours.MoveToOppositeDirection:
+                behaviour = new MoveToOppositeDirection(character, _enemy);
+                break;
+            case CharacterInteractionBehaviours.PermanentDeath:
+                behaviour = new PermanentDeath(_enemy);
+                break;
+            default:
+                Debug.LogError("Не удалось определить обработчик для поведения атаки");
+                break;
+        }
+
+        _enemy.SetBehaviour(behaviour);
     }
-
-
 }

@@ -4,11 +4,11 @@ public class MoveToRandomDirection : IBehaviour
 {
     const float TIME_TO_CHANGE_DIRECTION = 1;
 
-    private IMovableAndRotateable _movable;
+    private IMovable _movable;
     private float _timeElapsed;
     private Vector3 _currentDirection;
 
-    public MoveToRandomDirection(IMovableAndRotateable movable)
+    public MoveToRandomDirection(IMovable movable)
     {
         _movable = movable;
         _timeElapsed = TIME_TO_CHANGE_DIRECTION;

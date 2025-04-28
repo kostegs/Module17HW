@@ -3,9 +3,9 @@ using UnityEngine;
 public class MoveToCharacter : IBehaviour
 {
     private Character _character;
-    private IMovableAndRotateable _movable;
+    private IMovable _movable;
 
-    public MoveToCharacter(Character character, IMovableAndRotateable movable)
+    public MoveToCharacter(Character character, IMovable movable)
     {
         _character = character;
         _movable = movable;

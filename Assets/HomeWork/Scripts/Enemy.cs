@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class Enemy : MonoBehaviour, IMovableAndRotateable, IDestroyable, IHaveBehaviour
+public class Enemy : MonoBehaviour, IMovable, IDestroyable, IHaveBehaviour
 {
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rotateSpeed;

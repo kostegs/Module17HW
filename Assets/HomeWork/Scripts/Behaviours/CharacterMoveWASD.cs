@@ -3,9 +3,9 @@ using UnityEngine;
 public class CharacterMoveWASD : IBehaviour
 {
     private UserInput _userInput;
-    private IMovableAndRotateable _character;    
+    private IMovable _character;    
 
-    public CharacterMoveWASD(Mover mover, Rotator rotator, IMovableAndRotateable character)
+    public CharacterMoveWASD(Mover mover, Rotator rotator, IMovable character)
     {
         _userInput = new UserInput();
         _character = character;        

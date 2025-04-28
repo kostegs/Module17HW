@@ -5,9 +5,9 @@ public class Patrol : IBehaviour
 {
     private Queue<Transform> _patrolPoints;
     private Transform _currentPoint;    
-    private IMovableAndRotateable _movable;
+    private IMovable _movable;
 
-    public Patrol(IEnumerable<Transform> patrolPoints, IMovableAndRotateable movable)
+    public Patrol(IEnumerable<Transform> patrolPoints, IMovable movable)
     {
         _movable = movable;
         _patrolPoints = new Queue<Transform>(patrolPoints);

@@ -3,10 +3,10 @@ using UnityEngine;
 public class MoveToOppositeDirection : IBehaviour
 {
     private Character _character;
-    private IMovableAndRotateable _movable;
+    private IMovable _movable;
     private Vector3 _direction;
 
-    public MoveToOppositeDirection(Character character, IMovableAndRotateable movable)
+    public MoveToOppositeDirection(Character character, IMovable movable)
     {
         _character = character;
         _movable = movable;

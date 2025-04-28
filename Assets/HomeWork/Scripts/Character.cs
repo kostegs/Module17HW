@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class Character : MonoBehaviour, IMovableAndRotateable
+public class Character : MonoBehaviour, IMovable
 {
     [SerializeField] private float _movingSpeed;
     [SerializeField] private float _rotationSpeed;
